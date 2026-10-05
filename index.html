@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HKDSE Mathematics Revision Games — Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-image:
+                radial-gradient(ellipse 80% 50% at 15% -10%, rgba(99, 102, 241, 0.30), transparent 60%),
+                radial-gradient(ellipse 60% 45% at 85% -5%, rgba(217, 70, 239, 0.22), transparent 60%),
+                radial-gradient(ellipse 75% 50% at 50% 110%, rgba(34, 211, 238, 0.20), transparent 60%);
+            background-attachment: fixed;
+        }
+
+        h1.gradient-title {
+            background: linear-gradient(90deg, #fbbf24, #f472b6, #818cf8, #34d399);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        .game-card {
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+        .game-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(251, 191, 36, 0.45);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.30), 0 0 22px rgba(251, 191, 36, 0.15);
+        }
+        .game-card:hover .card-badge {
+            background-color: rgba(245, 158, 11, 0.25);
+            transform: scale(1.08);
+        }
+        .card-badge {
+            font-family: 'Times New Roman', Times, serif;
+            transition: transform 0.25s ease, background-color 0.25s ease;
+        }
+        .game-card:hover .play-chip {
+            background-color: #f59e0b;
+            color: #0f172a;
+            border-color: #f59e0b;
+        }
+        .play-chip {
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+
+        @keyframes floatMath {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-18px) rotate(6deg); }
+        }
+        .float-symbol {
+            position: absolute;
+            pointer-events: none;
+            user-select: none;
+            color: rgba(251, 191, 36, 0.10);
+            font-family: 'Times New Roman', Times, serif;
+            animation: floatMath 9s ease-in-out infinite;
+        }
+
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(30, 41, 59, 0.5); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen antialiased">
+
+    <!-- Decorative floating math symbols -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <span class="float-symbol text-6xl" style="top: 8%; left: 5%; animation-delay: 0s;">∑</span>
+        <span class="float-symbol text-5xl" style="top: 18%; right: 7%; animation-delay: 1.2s;">π</span>
+        <span class="float-symbol text-5xl" style="top: 40%; left: 3%; animation-delay: 2.4s;">√</span>
+        <span class="float-symbol text-6xl" style="top: 55%; right: 4%; animation-delay: 0.6s;">∞</span>
+        <span class="float-symbol text-5xl" style="top: 72%; left: 6%; animation-delay: 1.8s;">≤</span>
+        <span class="float-symbol text-6xl" style="top: 85%; right: 8%; animation-delay: 3s;">∝</span>
+        <span class="float-symbol text-5xl" style="top: 30%; left: 45%; animation-delay: 4.2s;">ƒ</span>
+        <span class="float-symbol text-5xl" style="top: 65%; left: 35%; animation-delay: 5s;">x²</span>
+        <span class="float-symbol text-5xl" style="top: 12%; left: 70%; animation-delay: 3.6s;">%</span>
+        <span class="float-symbol text-6xl" style="top: 78%; left: 65%; animation-delay: 4.8s;">∫</span>
+    </div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-4 py-10 sm:py-16">
+
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <p class="text-amber-400 font-semibold tracking-widest uppercase text-xs sm:text-sm mb-4">
+                Tak Nga Secondary School · Mathematics
+            </p>
+            <h1 class="gradient-title text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6">
+                HKDSE Mathematics<br class="sm:hidden"> Revision Games
+            </h1>
+            <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+                Choose a chapter to practise. Every game runs three levels — Core, Standard and
+                Past-paper long questions — with marks recorded and submitted to your teacher.
+            </p>
+        </header>
+
+        <!-- Stats strip -->
+        <div class="glass-panel rounded-2xl px-6 py-4 mb-12 flex flex-wrap items-center justify-center gap-x-10 gap-y-2 text-sm text-slate-300">
+            <span><span class="text-amber-400 font-bold">8</span> Chapters</span>
+            <span><span class="text-amber-400 font-bold">3</span> Levels per chapter</span>
+            <span>Paper <span class="text-amber-400 font-bold">1</span> &amp; Paper <span class="text-amber-400 font-bold">2</span> questions</span>
+            <span>Marks submitted to teacher</span>
+        </div>
+
+        <!-- Game cards -->
+        <main class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+            <a href="https://mrlawrencew.github.io/change_of_subjects/" class="game-card glass-panel rounded-2xl p-6 flex flex-col">
+                <div class="card-badge w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-xl font-bold text-amber-400 mb-4">≡</div>
+                <h2 class="text-white font-bold text-lg leading-snug mb-2">Change of Subjects, Identities &amp; Polynomials</h2>
+                <p class="text-slate-400 text-sm leading-relaxed flex-1">Change of subject, identities, H.C.F. &amp; L.C.M. and rational functions — Paper 1 fill-in and Paper 2 MC.</p>
+                <span class="play-chip inline-block mt-5 self-start px-4 py-2 rounded-lg bg-amber-500/15 border border-amber-400/30 text-amber-300 text-sm font-semibold">Play →</span>
+            </a>
+
+            <a href="https://mrlawrencew.github.io/hkdse_factorization_expansion/" class="game-card glass-panel rounded-2xl p-6 flex flex-col">
+                <div class="card-badge w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-xl font-bold text-amber-400 mb-4">x²</div>
+                <h2 class="text-white font-bold text-lg leading-snug mb-2">Factorization &amp; Expansion</h2>
+                <p class="text-slate-400 text-sm leading-relaxed flex-1">Expansion and factorization: common factor, cross method, identities and multi-part (a)(b)(c) Paper 1 questions.</p>
+                <span class="play-chip inline-block mt-5 self-start px-4 py-2 rounded-lg bg-amber-500/15 border border-amber-400/30 text-amber-300 text-sm font-semibold">Play →</span>
+            </a>
+
+            <a href="https://mrlawrencew.github.io/hkdse_indices_scientific_notation_revision_game/" class="game-card glass-panel rounded-2xl p-6 flex flex-col">
+                <div class="card-badge w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-xl font-bold text-amber-400 mb-4">aⁿ</div>
+                <h2 class="text-white font-bold text-lg leading-snug mb-2">Indices &amp; Scientific Notation</h2>
+                <p class="text-slate-400 text-sm leading-relaxed flex-1">Scientific notation, binary numbers and the laws of indices — Paper 1 &amp; Paper 2 style questions.</p>
+                <span class="play-chip inline-block mt-5 self-start px-4 py-2 rounded-lg bg-amber-500/15 border border-amber-400/30 text-amber-300 text-sm font-semibold">Play →</span>
+            </a>
+
+            <a href="https://mrlawrencew.github.io/Inequality/" class="game-card glass-panel rounded-2xl p-6 flex flex-col">
+                <div class="card-badge w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-xl font-bold text-amber-400 mb-4">≤</div>
+                <h2 class="text-white font-bold text-lg leading-snug mb-2">Inequalities</h2>
+                <p class="text-slate-400 text-sm leading-relaxed flex-1">Ch. 17 — compound inequalities: “and” / “or”, chained, discriminant and integer-counting problems.</p>
+                <span class="play-chip inline-block mt-5 self-start px-4 py-2 rounded-lg bg-amber-500/15 border border-amber-400/30 text-amber-300 text-sm font-semibold">Play →</span>
+            </a>
+
+            <a href="https://mrlawrencew.github.io/polynomial/" class="game-card glass-panel rounded-2xl p-6 flex flex-col">
+                <div class="card-badge w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-xl font-bold text-amber-400 mb-4">ƒ(x)</div>
+                <h2 class="text-white font-bold text-lg leading-snug mb-2">More about Polynomials</h2>
+                <p class="text-slate-400 text-sm leading-relaxed flex-1">Remainder &amp; factor theorems: find remainders, quotients and unknown coefficients, then factorize completely.</p>
+                <span class="play-chip inline-block mt-5 self-start px-4 py-2 rounded-lg bg-amber-500/15 border border-amber-400/30 text-amber-300 text-sm font-semibold">Play →</span>
+            </a>
+
+            <a href="https://mrlawrencew.github.io/percentage/" class="game-card glass-panel rounded-2xl p-6 flex flex-col">
+                <div class="card-badge w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-xl font-bold text-amber-400 mb-4">%</div>
+                <h2 class="text-white font-bold text-lg leading-snug mb-2">Percentage</h2>
+                <p class="text-slate-400 text-sm leading-relaxed flex-1">Simple &amp; compound interest, growth and depreciation, buying &amp; selling, profit &amp; loss, salary and successive change.</p>
+                <span class="play-chip inline-block mt-5 self-start px-4 py-2 rounded-lg bg-amber-500/15 border border-amber-400/30 text-amber-300 text-sm font-semibold">Play →</span>
+            </a>
+
+            <a href="https://mrlawrencew.github.io/Probability/" class="game-card glass-panel rounded-2xl p-6 flex flex-col">
+                <div class="card-badge w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-xl font-bold text-amber-400 mb-4">P</div>
+                <h2 class="text-white font-bold text-lg leading-snug mb-2">Probability</h2>
+                <p class="text-slate-400 text-sm leading-relaxed flex-1">From empirical probability to combinations: drawing with / without replacement, queues and two-stage games.</p>
+                <span class="play-chip inline-block mt-5 self-start px-4 py-2 rounded-lg bg-amber-500/15 border border-amber-400/30 text-amber-300 text-sm font-semibold">Play →</span>
+            </a>
+
+            <a href="https://mrlawrencew.github.io/Variations/" class="game-card glass-panel rounded-2xl p-6 flex flex-col">
+                <div class="card-badge w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-xl font-bold text-amber-400 mb-4">∝</div>
+                <h2 class="text-white font-bold text-lg leading-snug mb-2">Variations 變分</h2>
+                <p class="text-slate-400 text-sm leading-relaxed flex-1">Direct, inverse and joint variation — Paper 2 MC and full multi-part Paper 1 long questions.</p>
+                <span class="play-chip inline-block mt-5 self-start px-4 py-2 rounded-lg bg-amber-500/15 border border-amber-400/30 text-amber-300 text-sm font-semibold">Play →</span>
+            </a>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center mt-14 text-slate-500 text-sm">
+            HKDSE Mathematics Revision Games · Marks are recorded and submitted to your teacher.
+        </footer>
+    </div>
+
+</body>
+</html>
